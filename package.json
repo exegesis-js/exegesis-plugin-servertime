@@ -1,0 +1,79 @@
+{
+    "name": "exegesis-plugin-servertime",
+    "version": "0.0.0-semantic-release",
+    "description": "Adds server-timing header to Exegesis responses.",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "files": [
+        "dist/**/*"
+    ],
+    "scripts": {
+        "test": "npm run build && npm run lint && npm run test:unittest",
+        "build": "tsc",
+        "clean": "rm -rf dist types coverage",
+        "test:unittest": "tsc -p test && nyc mocha 'test/**/*.@(ts|tsx|js|jsx)'",
+        "precommit:unittest": "tsc -p test && mocha --reporter progress 'test/**/*.@(ts|tsx|js|jsx)'",
+        "lint": "npm run lint:source && npm run lint:tests",
+        "lint:source": "eslint --ext .ts --ext .tsx src",
+        "lint:tests": "eslint --ext .ts --ext .tsx test",
+        "prepare": "npm run build",
+        "prepublishOnly": "npm run build && npm test",
+        "semantic-release": "semantic-release"
+    },
+    "lint-staged": {
+        "src/**/*.ts": [
+            "eslint --ext ts --ext tsx"
+        ],
+        "test/**/*.ts": [
+            "eslint --ext ts --ext tsx"
+        ]
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/exegesis-js/exegesis-plugin-servertime.git"
+    },
+    "keywords": [
+        "server-timing",
+        "exegesis",
+        "servertime"
+    ],
+    "author": {
+        "name": "Jason Walton",
+        "email": "dev@lucid.thedreaming.org",
+        "url": "https://thedreaming.org"
+    },
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/exegesis-js/exegesis-js/exegesis-plugin-servertime/issues"
+    },
+    "homepage": "https://github.com/exegesis-js/exegesis-plugin-servertime#readme",
+    "devDependencies": {
+        "@types/chai": "^4.2.7",
+        "@types/mocha": "^5.2.7",
+        "@types/node": "^10.0.0",
+        "@typescript-eslint/eslint-plugin": "^2.15.0",
+        "@typescript-eslint/parser": "^2.15.0",
+        "chai": "^4.2.0",
+        "chai-as-promised": "^7.1.1",
+        "coveralls": "^3.0.9",
+        "eslint": "^6.8.0",
+        "eslint-config-prettier": "^6.9.0",
+        "exegesis": "^2.5.0",
+        "husky": "^4.0.6",
+        "mocha": "^7.0.0",
+        "nyc": "^15.0.0",
+        "prettier": "^1.19.1",
+        "pretty-quick": "^2.0.1",
+        "semantic-release": "^16.0.1",
+        "ts-node": "^8.6.1",
+        "typescript": "^3.7.4"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "pretty-quick --staged && lint-staged"
+        }
+    },
+    "dependencies": {
+        "servertime": "^3.1.1"
+    }
+}
