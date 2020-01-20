@@ -1,6 +1,6 @@
 {
     "name": "exegesis-plugin-servertime",
-    "version": "0.0.0-semantic-release",
+    "version": "1.0.0",
     "description": "Adds server-timing header to Exegesis responses.",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
